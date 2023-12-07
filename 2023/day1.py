@@ -1,4 +1,29 @@
-from pathlib import Path
+from util import parse_file_line_by_line
+
+
+def caluclate(numbers):
+    return sum(numbers)
+
+
+def get_value(line):
+    first = None
+    last = None
+    for char in line:
+        try:
+            first = int(char)
+            first = char
+            break
+        except:
+            continue
+    for char in line[::-1]:
+        try:
+            last = int(char)
+            last = char
+            break
+        except:
+            continue
+    return int(first + last)
+
 
 str_to_int_map = {
     "one": "1",
@@ -51,14 +76,12 @@ def get_last_number_as_char(chars):
     return number
 
 
-def get_value(line):
+def get_value_2(line):
     first = get_first_number_as_char(line)
     last = get_last_number_as_char(line[::-1])
     return int(first + last)
 
 
-with open(Path("inputs") / "1-2.txt") as lines:
-    numbers = []
-    for line in lines:
-        numbers.append(get_value(line))
-print(sum(numbers))
+if __name__ == "__main__":
+    print(sum(parse_file_line_by_line(1, 1, get_value)))
+    print(sum(parse_file_line_by_line(1, 2, get_value_2)))
