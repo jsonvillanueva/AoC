@@ -83,5 +83,5 @@ def part_two(line):
 
 
 if __name__ == "__main__":
-    print(sum(parse_file_line_by_line(1, 1, part_one)))
-    print(sum(parse_file_line_by_line(1, 2, part_two)))
+    print(sum(parse_file_line_by_line(1, part_one)))
+    print(sum(parse_file_line_by_line(1, part_two)))
