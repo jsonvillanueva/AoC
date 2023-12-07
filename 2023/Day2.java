@@ -14,6 +14,10 @@ class Day2 {
         Integer part1 = lines.map(Day2::partOne).mapToInt(l -> l).sum();
         System.out.println(part1);
 
+        lines = Files.newBufferedReader(path).lines();
+        Integer part2 = lines.map(Day2::partTwo).mapToInt(l -> l).sum();
+        System.out.println(part2);
+
     }
     private static Integer partOne(String line){
         Pattern patternGame = Pattern.compile("Game (\\d+): (.+)");
@@ -33,7 +37,6 @@ class Day2 {
                 String color = matcherSet.group(2);
                 cubeCounts.put(color, Math.max(amount, cubeCounts.get(color)));
             }
-
         };
 
         HashMap<String, Integer> maxCubes = new HashMap<>();
@@ -46,5 +49,26 @@ class Day2 {
             }
         }
         return gameID;
+    }
+
+    private static Integer partTwo(String line){
+        Pattern patternGame = Pattern.compile("Game (\\d+): (.+)");
+        Matcher matcherGame = patternGame.matcher(line);
+        HashMap<String, Integer> cubeCounts = new HashMap<>();
+        cubeCounts.put("red", 0);
+        cubeCounts.put("green", 0);
+        cubeCounts.put("blue", 0);
+
+        if (matcherGame.find()) {
+            Pattern patternSet = Pattern.compile("(\\d+) (\\w+)");
+            Matcher matcherSet = patternSet.matcher(line);
+            while (matcherSet.find()){
+                Integer amount = Integer.valueOf(matcherSet.group(1));
+                String color = matcherSet.group(2);
+                cubeCounts.put(color, Math.max(amount, cubeCounts.get(color)));
+            }
+        };
+
+        return cubeCounts.get("blue")*cubeCounts.get("red") * cubeCounts.get("green");
     }
 }
