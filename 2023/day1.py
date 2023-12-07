@@ -5,7 +5,7 @@ def caluclate(numbers):
     return sum(numbers)
 
 
-def get_value(line):
+def part_one(line):
     first = None
     last = None
     for char in line:
@@ -76,12 +76,12 @@ def get_last_number_as_char(chars):
     return number
 
 
-def get_value_2(line):
+def part_two(line):
     first = get_first_number_as_char(line)
     last = get_last_number_as_char(line[::-1])
     return int(first + last)
 
 
 if __name__ == "__main__":
-    print(sum(parse_file_line_by_line(1, 1, get_value)))
-    print(sum(parse_file_line_by_line(1, 2, get_value_2)))
+    print(sum(parse_file_line_by_line(1, 1, part_one)))
+    print(sum(parse_file_line_by_line(1, 2, part_two)))
