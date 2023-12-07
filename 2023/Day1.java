@@ -1,5 +1,9 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Stream;
 
 
 class Day1{
@@ -14,12 +18,14 @@ class Day1{
         "eight", 8,
         "nine", 9
     );
-    public static void main(String[] args) {
-        var lines1 = readLines();
-        var part1 = lines1.stream().map(Day1::firstLastDigit).mapToInt(l -> l.getFirst()*10+l.getLast()).sum();
+    public static void main(String[] args) throws IOException {
+        
+        Path path = Paths.get("inputs/1.txt");
+        Stream<String> lines = Files.newBufferedReader(path).lines();
+        var part1 = lines.map(Day1::firstLastDigit).mapToInt(l -> l.getFirst()*10+l.getLast()).sum();
         System.out.println(part1);
-        var lines2 = readLines();
-        var part2 = lines2.stream().map(Day1::firstLastDigitOrWord).mapToInt(l -> l.getFirst()*10+l.getLast()).sum();
+        lines = Files.newBufferedReader(path).lines();
+        var part2 = lines.map(Day1::firstLastDigitOrWord).mapToInt(l -> l.getFirst()*10+l.getLast()).sum();
         System.out.println(part2);
     }
 
@@ -48,17 +54,7 @@ class Day1{
 
             }
         }
-        System.out.println(line + Arrays.toString(result.toArray()));
         return result;
-    }
-
-    private static List<String> readLines() {
-        try (BufferedReader br = new BufferedReader(
-                new FileReader(new File("inputs/1-1.txt")))) {
-            return br.lines().toList(); 
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
     }
 
 }
