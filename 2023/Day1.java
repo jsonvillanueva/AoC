@@ -22,10 +22,11 @@ class Day1{
         
         Path path = Paths.get("inputs/1.txt");
         Stream<String> lines = Files.newBufferedReader(path).lines();
-        var part1 = lines.map(Day1::firstLastDigit).mapToInt(l -> l.getFirst()*10+l.getLast()).sum();
+        Integer part1 = lines.map(Day1::firstLastDigit).mapToInt(l -> l.getFirst()*10+l.getLast()).sum();
         System.out.println(part1);
+
         lines = Files.newBufferedReader(path).lines();
-        var part2 = lines.map(Day1::firstLastDigitOrWord).mapToInt(l -> l.getFirst()*10+l.getLast()).sum();
+        Integer part2 = lines.map(Day1::firstLastDigitOrWord).mapToInt(l -> l.getFirst()*10+l.getLast()).sum();
         System.out.println(part2);
     }
 
