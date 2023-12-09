@@ -42,7 +42,6 @@ public class Coordinate {
 
     public Integer readCoordinateNumber(List<String> lines) {
         Coordinate start = new Coordinate(this.row, this.col);
-        System.out.println(start.row + " " + start.col);
         StringBuilder numberAsStr = new StringBuilder();
         while (start.isInBounds(lines) && Character.isDigit(lines.get(start.row).charAt(start.col))){
             numberAsStr.append(lines.get(start.row).charAt(start.col));
