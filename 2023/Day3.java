@@ -7,7 +7,6 @@ import matrix.Coordinate;
 public class Day3 {
     public static void main(String args[]) {
         List<String> input = readLines();
-        // List<String> input = List.of("467..114..", "...*......", "..35..633.", "......#...", "617*......", ".....+.58.", "..592.....", "......755.", "...$.*....", ".664.598..");
         Integer solution = partOne(input);
         System.out.println(solution);
 
@@ -59,17 +58,11 @@ public class Day3 {
     }
 
     private static boolean charIsSymbol(Character c){
-        if (c == '.' || Character.isDigit(c)) {
-            return false;
-        }
-        return true;
+        return c != '.' && !Character.isDigit(c);
     }
 
     private static boolean charIsGear(Character c){
-        if (c == '*') {
-            return true;
-        }
-        return false;
+        return c == '*'; 
     }
 
     private static List<String> readLines() {
